@@ -1,9 +1,13 @@
-const CACHE = "sheep-guardian-v1";
+const CACHE_NAME = "diamondDefense-v1";
 
 const assets = [
   "./",
   "./index.html",
+  "./diamondDefense.css",
+  "./diamondDefense.js",
   "./manifest.json",
+
+  // icons
   "./icons/C1.png",
   "./icons/C2.png",
   "./icons/C3.png",
@@ -15,16 +19,29 @@ const assets = [
   "./icons/n4.png"
 ];
 
-// 설치
-self.addEventListener("install", (e) => {
-  e.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(assets))
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(assets);
+    })
   );
 });
 
-// 요청 가로채기
-self.addEventListener("fetch", (e) => {
-  e.respondWith(
-    caches.match(e.request).then((res) => res || fetch(e.request))
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request).then((resp) => {
+      return resp || fetch(event.request);
+    })
+  );
+});
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(
+        keys.filter((key) => key !== CACHE_NAME)
+            .map((key) => caches.delete(key))
+      )
+    )
   );
 });
