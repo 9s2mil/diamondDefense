@@ -1,9 +1,9 @@
-
 let isColorAssist = false;
 let bestScore = parseInt(localStorage.getItem("bestScore") || "0");
 
 document.getElementById("startCover").addEventListener("click", () => {
-    document.getElementById("startCover").style.display = "none";
+  document.getElementById("startCover").style.display = "none";
+  miniMenu.style.display = "block"; 
 });
 
 document.getElementById("playerScore").textContent = bestScore + "점";
@@ -35,7 +35,9 @@ galleryPopup.onclick = (e) => {
         galleryPopup.style.display = "none";
     }
 };
-
+document.getElementById("btnBack").addEventListener("click", () => {
+  miniMenu.style.display = "block";
+});
 // 🧭 wrap 비율 자동 스케일
 const wrap=document.getElementById("wrap");
 function scaleWrap(){
@@ -545,6 +547,31 @@ document.addEventListener("click", (e) => {
     applySkins();
     renderBoard();
 });
+
+/* ==============================
+   🎮 미니게임 메뉴 + 팝업 제어
+============================== */
+
+const miniMenu = document.getElementById("miniMenu");
+const popupFeed = document.getElementById("popupFeed");
+
+// 피드 버튼 → 팝업 열림
+document.getElementById("btnFeed").onclick = () => {
+  popupFeed.style.display = "block";
+};
+
+// 디펜스(닫기) 버튼 → 미니메뉴 닫기
+document.getElementById("btnDefenseClose").onclick = () => {
+  miniMenu.style.display = "none";
+};
+
+// 팝업 닫기 공통 (트레이닝 제거됨)
+document.querySelectorAll(".closePopup").forEach(btn => {
+  btn.addEventListener("click", () => {
+    popupFeed.style.display = "none";
+  });
+});
+
 
 // 초기화
 initBoard();

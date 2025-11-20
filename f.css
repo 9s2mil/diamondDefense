@@ -1,0 +1,28 @@
+
+/**//* 🌕 트레이닝/피드 팝업 */
+.popupMenu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* wrap의 padding 포함 전체 */
+  height: 100%;
+  /* wrap 전체 영역 */
+  box-sizing: border-box;
+  background: white;
+  /* 필요 시 색 변경 */
+  z-index: 7000;
+  display: none;
+
+  /* 내부 여백 없음 */
+  padding: 0;
+}
+
+.closePopup {
+  padding: 12px 32px;
+  background: #444;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
