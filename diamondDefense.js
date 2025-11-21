@@ -3,7 +3,7 @@ let bestScore = parseInt(localStorage.getItem("bestScore") || "0");
 
 document.getElementById("startCover").addEventListener("click", () => {
   document.getElementById("startCover").style.display = "none";
-  miniMenu.style.display = "block"; 
+  miniMenu.style.display = "none"; //여기블락
 });
 
 document.getElementById("playerScore").textContent = bestScore + "점";
@@ -36,7 +36,7 @@ galleryPopup.onclick = (e) => {
     }
 };
 document.getElementById("btnBack").addEventListener("click", () => {
-  miniMenu.style.display = "block";
+  miniMenu.style.display = "none";//여기블락
 });
 // 🧭 wrap 비율 자동 스케일
 const wrap=document.getElementById("wrap");
